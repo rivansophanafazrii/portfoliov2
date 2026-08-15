@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Web Developer",
       "UI/UX Designer",
       "Frontend Developer",
-      "Creative Developer",
+      // "Creative Developer",
     ];
 
     let wordIndex = 0;
