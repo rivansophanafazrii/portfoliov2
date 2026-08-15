@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuToggle.setAttribute("aria-expanded", "true");
 
-    document.body.classList.add("menu-open");
+    document.body.classList.add("nav-open");
   }
 
   function closeMobileMenu() {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuToggle.setAttribute("aria-expanded", "false");
 
-    document.body.classList.remove("menu-open");
+    document.body.classList.remove("nav-open");
   }
 
   function toggleMobileMenu() {
@@ -796,6 +796,19 @@ document.addEventListener("DOMContentLoaded", () => {
           "visible",
         );
       });
+  }
+
+  /* =========================================================
+     AOS ANIMATION
+     ========================================================= */
+
+  if (typeof AOS !== "undefined") {
+    AOS.init({
+      duration: 700,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 80,
+    });
   }
 
   /* =========================================================
