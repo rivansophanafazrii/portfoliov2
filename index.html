@@ -40,7 +40,7 @@
       <ul class="nav-links">
         <li><a class="nav-link active" href="#home">Home</a></li>
         <li><a class="nav-link" href="#about">About</a></li>
-        <li><a class="nav-link" href="#skills">Skills</a></li>
+        <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
         <li><a class="nav-link" href="#certificates">Certificates</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
         <li><a class="nav-cta" href="assets/cv/cv-rivansf.pdf" download="cv-rivansophanafazri.pdf">Download CV <i class="fa-solid fa-download"></i></a></li>
@@ -151,53 +151,68 @@
       </div>
     </section>
 
-    <section class="skills section" id="skills">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <div>
-            <span class="mini-title">02 / Expertise</span>
-            <h2>Tools I use to <span>create.</span></h2>
-          </div>
-          <p>Teknologi yang saya gunakan untuk membangun antarmuka dan aplikasi web secara bertahap.</p>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card" data-aos="fade-up" data-aos-delay="50">
-            <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
-            <h3>Frontend</h3>
-            <p>HTML, CSS, JavaScript, Bootstrap, React</p>
-            <div class="skill-tags"><span>HTML</span><span>CSS</span><span>JS</span><span>React</span></div>
-          </article>
-
-          <article class="skill-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
-            <h3>Backend</h3>
-            <p>PHP dan Laravel untuk membangun sistem web terstruktur.</p>
-            <div class="skill-tags"><span>PHP</span><span>Laravel</span><span>REST</span></div>
-          </article>
-
-          <article class="skill-card" data-aos="fade-up" data-aos-delay="150">
-            <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
-            <h3>Database & Tools</h3>
-            <p>Pengelolaan data dan workflow pengembangan yang terorganisir.</p>
-            <div class="skill-tags"><span>MySQL</span><span>Git</span><span>VS Code</span></div>
-          </article>
-
-          <article class="skill-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="skill-icon"><i class="fa-brands fa-figma"></i></div>
-            <h3>UI/UX Design</h3>
-            <p>Merancang interface dengan struktur visual dan alur pengguna yang jelas.</p>
-            <div class="skill-tags"><span>Figma</span><span>Wireframe</span><span>Prototype</span></div>
-          </article>
-        </div>
-
-        <div class="tech-strip" aria-label="Technology stack">
-          <div class="tech-track">
-            <span>HTML5</span><b>•</b><span>CSS3</span><b>•</b><span>JavaScript</span><b>•</b><span>Bootstrap</span><b>•</b><span>React</span><b>•</b><span>PHP</span><b>•</b><span>Laravel</span><b>•</b><span>MySQL</span><b>•</b><span>Git</span><b>•</b><span>Figma</span>
-          </div>
-        </div>
+    <section class="portfolio section" id="portfolio">
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <div>
+        <span class="mini-title">02 / Portfolio</span>
+        <h2>My recent <span>projects.</span></h2>
       </div>
-    </section>
+      <p>Kumpulan karya dan proyek yang telah saya bangun untuk memecahkan masalah dan memberikan pengalaman pengguna yang baik.</p>
+    </div>
+
+    <!-- STRUKTUR CARD PROYEK (Ganti isi projects-grid) -->
+<div class="projects-grid">
+  <article class="project-card" data-aos="fade-up" onclick="openProjectModal('project-1')">
+    <div class="project-image">
+      <img src="img/web/siperpus.webp" alt="SIPERPUS Website" loading="lazy">
+      <div class="project-overlay">
+        <span>View Project <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+    <div class="project-content">
+      <h3>Sistem Informasi Perpustakaan Berbasis Web</h3>
+      <div class="skill-tags">
+        <span>Bootstrap 5</span><span>JavaScript</span><span>Laravel</span><span>MySQL</span>
+      </div>
+    </div>
+  </article>
+  <article class="project-card" data-aos="fade-up" onclick="openProjectModal('project-2')">
+    <div class="project-image">
+      <img src="img/web/undangan-digital.webp" alt="E-Commerce Website" loading="lazy">
+      <div class="project-overlay">
+        <span>View Project <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+    <div class="project-content">
+      <h3>Landing Page Undangan Digital</h3>
+      <div class="skill-tags">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+      </div>
+    </div>
+  </article>
+  
+  <!-- Anda bisa menambahkan <article class="project-card"> sebanyak apapun di sini -->
+</div>
+
+<!-- MODAL DETAIL PROYEK (Tambahkan di bawah penutup tag section skills, sebelum section contact) -->
+<div id="projectModal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-content project-modal-content">
+    <button class="close-modal" type="button" onclick="closeProjectModal()" aria-label="Tutup">&times;</button>
+    <div id="projectModalBody">
+      <!-- Konten akan di-inject oleh JavaScript -->
+    </div>
+  </div>
+</div>
+
+    <!-- Tech Strip tetap dipertahankan -->
+    <div class="tech-strip" aria-label="Technology stack" style="margin-top: 50px;">
+      <div class="tech-track">
+        <span>HTML5</span><b>•</b><span>CSS3</span><b>•</b><span>JavaScript</span><b>•</b><span>Bootstrap</span><b>•</b><span>React</span><b>•</b><span>PHP</span><b>•</b><span>Laravel</span><b>•</b><span>MySQL</span><b>•</b><span>Git</span><b>•</b><span>Figma</span>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section class="certificates section" id="certificates">
       <div class="container">

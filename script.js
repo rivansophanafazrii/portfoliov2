@@ -151,10 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentWord = words[wordIndex];
 
       if (!isDeleting) {
-        typingElement.textContent = currentWord.substring(
-          0,
-          charIndex + 1,
-        );
+        typingElement.textContent = currentWord.substring(0, charIndex + 1);
 
         charIndex++;
 
@@ -166,10 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
       } else {
-        typingElement.textContent = currentWord.substring(
-          0,
-          charIndex - 1,
-        );
+        typingElement.textContent = currentWord.substring(0, charIndex - 1);
 
         charIndex--;
 
@@ -184,10 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      setTimeout(
-        typeRole,
-        isDeleting ? deletingSpeed : typingSpeed,
-      );
+      setTimeout(typeRole, isDeleting ? deletingSpeed : typingSpeed);
     }
 
     typeRole();
@@ -201,8 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!progressBar) return;
 
     const scrollTop =
-      document.documentElement.scrollTop ||
-      document.body.scrollTop;
+      document.documentElement.scrollTop || document.body.scrollTop;
 
     const documentHeight =
       document.documentElement.scrollHeight -
@@ -213,11 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const scrollPercentage =
-      (scrollTop / documentHeight) * 100;
+    const scrollPercentage = (scrollTop / documentHeight) * 100;
 
-    progressBar.style.width =
-      `${Math.min(scrollPercentage, 100)}%`;
+    progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
   }
 
   window.addEventListener("scroll", updateProgressBar, {
@@ -232,34 +220,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sections = document.querySelectorAll("section[id]");
 
-  const navigationLinks =
-    document.querySelectorAll(".nav-links a[href^='#']");
+  const navigationLinks = document.querySelectorAll(".nav-links a[href^='#']");
 
   function updateActiveNavigation() {
     let currentSection = "";
 
     sections.forEach((section) => {
-      const sectionTop =
-        section.offsetTop - 150;
+      const sectionTop = section.offsetTop - 150;
 
-      const sectionHeight =
-        section.offsetHeight;
+      const sectionHeight = section.offsetHeight;
 
       if (
         window.scrollY >= sectionTop &&
-        window.scrollY <
-          sectionTop + sectionHeight
+        window.scrollY < sectionTop + sectionHeight
       ) {
-        currentSection =
-          section.getAttribute("id");
+        currentSection = section.getAttribute("id");
       }
     });
 
     navigationLinks.forEach((link) => {
       link.classList.remove("active");
 
-      const href =
-        link.getAttribute("href");
+      const href = link.getAttribute("href");
 
       if (href === `#${currentSection}`) {
         link.classList.add("active");
@@ -267,13 +249,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.addEventListener(
-    "scroll",
-    updateActiveNavigation,
-    {
-      passive: true,
-    },
-  );
+  window.addEventListener("scroll", updateActiveNavigation, {
+    passive: true,
+  });
 
   updateActiveNavigation();
 
@@ -281,75 +259,56 @@ document.addEventListener("DOMContentLoaded", () => {
      SMOOTH SCROLL
      ========================================================= */
 
-  document
-    .querySelectorAll('a[href^="#"]')
-    .forEach((anchor) => {
-      anchor.addEventListener(
-        "click",
-        function (event) {
-          const targetId =
-            this.getAttribute("href");
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (event) {
+      const targetId = this.getAttribute("href");
 
-          if (!targetId || targetId === "#") {
-            return;
-          }
+      if (!targetId || targetId === "#") {
+        return;
+      }
 
-          const target =
-            document.querySelector(targetId);
+      const target = document.querySelector(targetId);
 
-          if (!target) return;
+      if (!target) return;
 
-          event.preventDefault();
+      event.preventDefault();
 
-          const navbarHeight =
-            header
-              ? header.offsetHeight
-              : 80;
+      const navbarHeight = header ? header.offsetHeight : 80;
 
-          const targetPosition =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            navbarHeight;
+      const targetPosition =
+        target.getBoundingClientRect().top + window.scrollY - navbarHeight;
 
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          });
-        },
-      );
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
     });
+  });
 
   /* =========================================================
      SCROLL REVEAL ANIMATION
      ========================================================= */
 
-  const revealElements =
-    document.querySelectorAll(
-      ".reveal, .section-heading, .skill-card, .project-card, .certificate-card, .about-card",
-    );
+  const revealElements = document.querySelectorAll(
+    ".reveal, .section-heading, .skill-card, .project-card, .certificate-card, .about-card",
+  );
 
   if ("IntersectionObserver" in window) {
-    const revealObserver =
-      new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add(
-                "visible",
-              );
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
 
-              revealObserver.unobserve(
-                entry.target,
-              );
-            }
-          });
-        },
-        {
-          threshold: 0.12,
-          rootMargin:
-            "0px 0px -50px 0px",
-        },
-      );
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
 
     revealElements.forEach((element) => {
       element.classList.add("reveal");
@@ -363,20 +322,11 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   window.openCertDetail = function (category) {
-    const modal =
-      document.getElementById(
-        "certModal",
-      );
+    const modal = document.getElementById("certModal");
 
-    const title =
-      document.getElementById(
-        "modalTitle",
-      );
+    const title = document.getElementById("modalTitle");
 
-    const gallery =
-      document.getElementById(
-        "modalGallery",
-      );
+    const gallery = document.getElementById("modalGallery");
 
     if (!modal || !title || !gallery) {
       return;
@@ -384,15 +334,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.add("show");
 
-    document.body.classList.add(
-      "modal-open",
-    );
+    document.body.classList.add("modal-open");
 
     gallery.innerHTML = "";
 
     if (category === "web-dev") {
-      title.textContent =
-        "Sertifikasi Pengembangan Web";
+      title.textContent = "Sertifikasi Pengembangan Web";
 
       gallery.innerHTML = `
         <div class="gallery-item">
@@ -412,10 +359,27 @@ document.addEventListener("DOMContentLoaded", () => {
           >
           <p>Dasar JavaScript</p>
         </div>
+
+        <div class="gallery-item">
+          <img
+            src="img/cert/dicoding/front-end.png"
+            alt="Sertifikat Belajar Membuat Front-End Web untuk Pemula"
+            loading="lazy"
+          >
+          <p>Front-End Web</p>
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="img/cert/dicoding/memulai-dasar-pemrograman-untuk-menjadi-pengembang-software.png"
+            alt="memulai-dasar-pemrograman-untuk-menjadi-pengembang-software"
+            loading="lazy"
+          >
+          <p>Memulai Dasar Pemrograman untuk Menjadi Pengembang Software</p>
+        </div>
       `;
     } else if (category === "ai") {
-      title.textContent =
-        "Sertifikasi Kecerdasan Buatan";
+      title.textContent = "Sertifikasi Kecerdasan Buatan";
 
       gallery.innerHTML = `
         <div class="gallery-item">
@@ -428,8 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
     } else {
-      title.textContent =
-        "Sertifikasi UI/UX & Desain Grafis";
+      title.textContent = "Sertifikasi UI/UX & Desain Grafis";
 
       gallery.innerHTML = `
         <div class="gallery-item">
@@ -453,9 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     requestAnimationFrame(() => {
-      modal.classList.add(
-        "modal-visible",
-      );
+      modal.classList.add("modal-visible");
     });
   };
 
@@ -464,23 +425,16 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   window.closeCertModal = function () {
-    const modal =
-      document.getElementById(
-        "certModal",
-      );
+    const modal = document.getElementById("certModal");
 
     if (!modal) return;
 
-    modal.classList.remove(
-      "modal-visible",
-    );
+    modal.classList.remove("modal-visible");
 
     setTimeout(() => {
       modal.classList.remove("show");
 
-      document.body.classList.remove(
-        "modal-open",
-      );
+      document.body.classList.remove("modal-open");
     }, 250);
   };
 
@@ -489,15 +443,9 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   window.addEventListener("click", (event) => {
-    const modal =
-      document.getElementById(
-        "certModal",
-      );
+    const modal = document.getElementById("certModal");
 
-    if (
-      modal &&
-      event.target === modal
-    ) {
+    if (modal && event.target === modal) {
       window.closeCertModal();
     }
   });
@@ -506,26 +454,17 @@ document.addEventListener("DOMContentLoaded", () => {
      CLOSE MODAL WITH ESC KEY
      ========================================================= */
 
-  document.addEventListener(
-    "keydown",
-    (event) => {
-      if (event.key !== "Escape") {
-        return;
-      }
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") {
+      return;
+    }
 
-      const modal =
-        document.getElementById(
-          "certModal",
-        );
+    const modal = document.getElementById("certModal");
 
-      if (
-        modal &&
-        modal.classList.contains("show")
-      ) {
-        window.closeCertModal();
-      }
-    },
-  );
+    if (modal && modal.classList.contains("show")) {
+      window.closeCertModal();
+    }
+  });
 
   /* =========================================================
      CONTACT FORM
@@ -534,171 +473,120 @@ document.addEventListener("DOMContentLoaded", () => {
   const scriptURL =
     "https://script.google.com/macros/s/AKfycbw2o2Rqnz2Qt-aS7HlV5SLgB1YEZ-WPYFEo16F-Vj7ZWde19HsLL2ZhOmUrCt9X0484AA/exec";
 
-  const form =
-    document.forms[
-      "submit-to-google-sheet"
-    ];
+  const form = document.forms["submit-to-google-sheet"];
 
   if (form) {
-    form.addEventListener(
-      "submit",
-      async (event) => {
-        event.preventDefault();
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-        const submitButton =
-          form.querySelector(
-            'button[type="submit"]',
-          );
+      const submitButton = form.querySelector('button[type="submit"]');
 
-        const originalButtonText =
-          submitButton
-            ? submitButton.innerHTML
-            : "";
+      const originalButtonText = submitButton ? submitButton.innerHTML : "";
 
-        try {
-          /* Disable button */
-          if (submitButton) {
-            submitButton.disabled = true;
+      try {
+        /* Disable button */
+        if (submitButton) {
+          submitButton.disabled = true;
 
-            submitButton.innerHTML = `
+          submitButton.innerHTML = `
               <span class="button-loading">
                 <i class="fas fa-spinner fa-spin"></i>
                 Mengirim...
               </span>
             `;
-          }
-
-          /* Loading popup */
-          if (
-            typeof Swal !== "undefined"
-          ) {
-            Swal.fire({
-              title: "Mengirim pesan",
-              text:
-                "Mohon tunggu sebentar...",
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              showConfirmButton: false,
-              didOpen: () => {
-                Swal.showLoading();
-              },
-            });
-          }
-
-          /* Send data */
-          const response =
-            await fetch(scriptURL, {
-              method: "POST",
-              body: new FormData(form),
-            });
-
-          if (!response.ok) {
-            throw new Error(
-              "Gagal mengirim data.",
-            );
-          }
-
-          /* Close loading */
-          if (
-            typeof Swal !== "undefined"
-          ) {
-            Swal.close();
-
-            await Swal.fire({
-              icon: "success",
-              title:
-                "Pesan Berhasil Dikirim",
-              text:
-                "Terima kasih. Pesan kamu sudah berhasil dikirim.",
-              confirmButtonText: "Oke",
-              confirmButtonColor:
-                "#0984F3",
-            });
-          } else {
-            alert(
-              "Pesan berhasil dikirim.",
-            );
-          }
-
-          /* Reset form */
-          form.reset();
-        } catch (error) {
-          console.error(
-            "Contact form error:",
-            error,
-          );
-
-          if (
-            typeof Swal !== "undefined"
-          ) {
-            Swal.close();
-
-            Swal.fire({
-              icon: "error",
-              title: "Gagal Mengirim",
-              text:
-                "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.",
-              confirmButtonText:
-                "Coba Lagi",
-              confirmButtonColor:
-                "#0984F3",
-            });
-          } else {
-            alert(
-              "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.",
-            );
-          }
-        } finally {
-          /* Enable button */
-          if (submitButton) {
-            submitButton.disabled =
-              false;
-
-            submitButton.innerHTML =
-              originalButtonText;
-          }
         }
-      },
-    );
+
+        /* Loading popup */
+        if (typeof Swal !== "undefined") {
+          Swal.fire({
+            title: "Mengirim pesan",
+            text: "Mohon tunggu sebentar...",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            showConfirmButton: false,
+            didOpen: () => {
+              Swal.showLoading();
+            },
+          });
+        }
+
+        /* Send data */
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+        });
+
+        if (!response.ok) {
+          throw new Error("Gagal mengirim data.");
+        }
+
+        /* Close loading */
+        if (typeof Swal !== "undefined") {
+          Swal.close();
+
+          await Swal.fire({
+            icon: "success",
+            title: "Pesan Berhasil Dikirim",
+            text: "Terima kasih. Pesan kamu sudah berhasil dikirim.",
+            confirmButtonText: "Oke",
+            confirmButtonColor: "#0984F3",
+          });
+        } else {
+          alert("Pesan berhasil dikirim.");
+        }
+
+        /* Reset form */
+        form.reset();
+      } catch (error) {
+        console.error("Contact form error:", error);
+
+        if (typeof Swal !== "undefined") {
+          Swal.close();
+
+          Swal.fire({
+            icon: "error",
+            title: "Gagal Mengirim",
+            text: "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.",
+            confirmButtonText: "Coba Lagi",
+            confirmButtonColor: "#0984F3",
+          });
+        } else {
+          alert("Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.");
+        }
+      } finally {
+        /* Enable button */
+        if (submitButton) {
+          submitButton.disabled = false;
+
+          submitButton.innerHTML = originalButtonText;
+        }
+      }
+    });
   }
 
   /* =========================================================
      IMAGE ERROR HANDLING
      ========================================================= */
 
-  document
-    .querySelectorAll("img")
-    .forEach((image) => {
-      image.addEventListener(
-        "error",
-        function () {
-          this.classList.add(
-            "image-error",
-          );
+  document.querySelectorAll("img").forEach((image) => {
+    image.addEventListener("error", function () {
+      this.classList.add("image-error");
 
-          console.warn(
-            `Gambar tidak ditemukan: ${this.src}`,
-          );
-        },
-      );
+      console.warn(`Gambar tidak ditemukan: ${this.src}`);
     });
+  });
 
   /* =========================================================
      LAZY IMAGE EFFECT
      ========================================================= */
 
-  const images =
-    document.querySelectorAll(
-      'img[loading="lazy"]',
-    );
+  const images = document.querySelectorAll('img[loading="lazy"]');
 
   images.forEach((image) => {
     image.addEventListener(
       "load",
       () => {
-        image.classList.add(
-          "loaded",
-        );
+        image.classList.add("loaded");
       },
       {
         once: true,
@@ -710,46 +598,29 @@ document.addEventListener("DOMContentLoaded", () => {
      CURRENT YEAR
      ========================================================= */
 
-  const currentYear =
-    document.getElementById(
-      "current-year",
-    );
+  const currentYear = document.getElementById("current-year");
 
   if (currentYear) {
-    currentYear.textContent =
-      new Date().getFullYear();
+    currentYear.textContent = new Date().getFullYear();
   }
 
   /* =========================================================
      CURSOR INTERACTION
      ========================================================= */
 
-  const interactiveElements =
-    document.querySelectorAll(
-      "a, button, .skill-card, .certificate-card, .project-card",
-    );
-
-  interactiveElements.forEach(
-    (element) => {
-      element.addEventListener(
-        "mouseenter",
-        () => {
-          element.classList.add(
-            "is-hovered",
-          );
-        },
-      );
-
-      element.addEventListener(
-        "mouseleave",
-        () => {
-          element.classList.remove(
-            "is-hovered",
-          );
-        },
-      );
-    },
+  const interactiveElements = document.querySelectorAll(
+    "a, button, .skill-card, .certificate-card, .project-card",
   );
+
+  interactiveElements.forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+      element.classList.add("is-hovered");
+    });
+
+    element.addEventListener("mouseleave", () => {
+      element.classList.remove("is-hovered");
+    });
+  });
 
   /* =========================================================
      PREVENT DOUBLE SUBMISSION
@@ -780,22 +651,16 @@ document.addEventListener("DOMContentLoaded", () => {
      REDUCED MOTION SUPPORT
      ========================================================= */
 
-  const prefersReducedMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
   if (prefersReducedMotion) {
-    document.documentElement.style.scrollBehavior =
-      "auto";
+    document.documentElement.style.scrollBehavior = "auto";
 
-    document
-      .querySelectorAll(".reveal")
-      .forEach((element) => {
-        element.classList.add(
-          "visible",
-        );
-      });
+    document.querySelectorAll(".reveal").forEach((element) => {
+      element.classList.add("visible");
+    });
   }
 
   /* =========================================================
@@ -815,7 +680,127 @@ document.addEventListener("DOMContentLoaded", () => {
      PAGE LOADED
      ========================================================= */
 
-  document.body.classList.add(
-    "page-loaded",
-  );
+  document.body.classList.add("page-loaded");
+});
+
+/* =========================================================
+   PROJECT MODAL
+   ========================================================= */
+
+// Database Proyek (Tambahkan proyek Anda di sini tanpa batas)
+const projectsData = {
+  "project-1": {
+    title: "Sistem Informasi Perpustakaan Berbasis Website",
+    subtitle: "Platform manajemen perpustakaan sekolah dengan tampilan yang modern menggunakan framework bootstrap 5",
+    year: "2026",
+    category: "Web Development",
+    role: "Fullstack Developer",
+    mainImage: "img/web/siperpus.webp",
+    task: "Mengembangkan inti dari sistem perpustakaan, yaitu sirkulasi peminjaman dan pengembalian. Sistem wajib memperbarui stok buku secara otomatis saat transaksi terjadi dan menghitung denda keterlambatan secara objektif tanpa kalkulasi manual dari petugas.",
+    solution:
+      "Memanfaatkan library penanggalan Carbon (bawaan Laravel) untuk menghitung selisih hari antara tanggal jatuh tempo dengan tanggal pengembalian riil. Jika terlambat, sistem otomatis mengalikan jumlah hari tersebut dengan tarif denda per hari yang berlaku di sekolah.",
+    videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4", // Ganti ID YouTube
+    gallery: ["img/doc-1.jpg", "img/doc-2.jpg", "img/doc-3.jpg"], // Kosongkan array [] jika tidak ada foto
+  },
+  "project-2": {
+    title: "Landing Page Undangan Digital",
+    subtitle: "Ini adalah proyek tugas mata kuliah desain web",
+    year: "2026",
+    category: "Web Development",
+    role: "Fullstack Developer",
+    mainImage: "img/web/undangan-digital.webp",
+    task: "Mengembangkan inti dari sistem perpustakaan, yaitu sirkulasi peminjaman dan pengembalian. Sistem wajib memperbarui stok buku secara otomatis saat transaksi terjadi dan menghitung denda keterlambatan secara objektif tanpa kalkulasi manual dari petugas.",
+    solution:
+      "Memanfaatkan library penanggalan Carbon (bawaan Laravel) untuk menghitung selisih hari antara tanggal jatuh tempo dengan tanggal pengembalian riil. Jika terlambat, sistem otomatis mengalikan jumlah hari tersebut dengan tarif denda per hari yang berlaku di sekolah.",
+    videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4", // Ganti ID YouTube
+    gallery: ["img/doc-1.jpg", "img/doc-2.jpg", "img/doc-3.jpg"], // Kosongkan array [] jika tidak ada foto
+  },
+  // Tambahkan 'project-2', 'project-3', dst...
+};
+
+window.openProjectModal = function (projectId) {
+  const modal = document.getElementById("projectModal");
+  const modalBody = document.getElementById("projectModalBody");
+  const data = projectsData[projectId];
+
+  if (!modal || !modalBody || !data) return;
+
+  // Generate Gallery HTML
+  let galleryHTML = "";
+  if (data.gallery && data.gallery.length > 0) {
+    galleryHTML = `<div class="project-section" style="grid-column: 1 / -1;">
+                     <h4>Dokumentasi</h4>
+                     <div class="project-gallery">
+                       ${data.gallery.map((img) => `<img src="${img}" alt="Dokumentasi Proyek">`).join("")}
+                     </div>
+                   </div>`;
+  }
+
+  // Inject HTML ke dalam modal
+  modalBody.innerHTML = `
+    <span class="mini-title">${data.subtitle}</span>
+    <h2 id="modalTitle">${data.title}</h2>
+    
+    <div class="project-meta">
+      <span><i class="fa-regular fa-calendar"></i> ${data.year}</span>
+      <span><i class="fa-solid fa-layer-group"></i> ${data.category}</span>
+      <span><i class="fa-solid fa-user-astronaut"></i> ${data.role}</span>
+    </div>
+
+    <img src="${data.mainImage}" alt="${data.title}" class="project-main-img">
+
+    <div class="project-desc-grid">
+      <div class="project-section">
+        <h4>Task</h4>
+        <p>${data.task}</p>
+      </div>
+      <div class="project-section">
+        <h4>Solution</h4>
+        <p>${data.solution}</p>
+      </div>
+    </div>
+
+    ${
+      data.videoUrl
+        ? `
+    <div class="project-section">
+      <h4>Video Review</h4>
+      <div class="video-container">
+        <iframe src="${data.videoUrl}" allowfullscreen></iframe>
+      </div>
+    </div>`
+        : ""
+    }
+
+    ${galleryHTML}
+  `;
+
+  modal.classList.add("show");
+  document.body.classList.add("modal-open");
+
+  requestAnimationFrame(() => {
+    modal.classList.add("modal-visible");
+  });
+};
+
+window.closeProjectModal = function () {
+  const modal = document.getElementById("projectModal");
+  if (!modal) return;
+
+  modal.classList.remove("modal-visible");
+  setTimeout(() => {
+    modal.classList.remove("show");
+    document.body.classList.remove("modal-open");
+    // Hapus iframe agar video berhenti memutar saat ditutup
+    const modalBody = document.getElementById("projectModalBody");
+    if (modalBody) modalBody.innerHTML = "";
+  }, 250);
+};
+
+// Menutup modal project saat klik di luar
+window.addEventListener("click", (event) => {
+  const projectModal = document.getElementById("projectModal");
+  if (projectModal && event.target === projectModal) {
+    window.closeProjectModal();
+  }
 });
