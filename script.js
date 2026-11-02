@@ -696,6 +696,7 @@ const projectsData = {
     year: "2026",
     category: "Web Development",
     role: "Fullstack Developer",
+    link:"https://github.com/rivansophanafazrii/siperpus",
     mainImage: "img/web/siperpus.webp",
     task: "Mengembangkan inti dari sistem perpustakaan, yaitu sirkulasi peminjaman dan pengembalian. Sistem wajib memperbarui stok buku secara otomatis saat transaksi terjadi dan menghitung denda keterlambatan secara objektif tanpa kalkulasi manual dari petugas.",
     solution:
@@ -704,12 +705,30 @@ const projectsData = {
     gallery: ["img/web/siperpus.webp"],
   },
   "project-2": {
+    title: "Personal Website",
+    subtitle:
+      "Proyek ini merupakan pengembangan sebuah Website Profil Pribadi (Personal Website) berstruktur satu halaman (Landing Page) yang dirancang sebagai portofolio digital interaktif. Proyek ini dibangun khusus untuk memenuhi kriteria kelulusan Tugas Akhir (Submission) pada Pelatihan Belajar Dasar Pemrograman Web di Dicoding. Fokus utama dari proyek ini adalah menerapkan standarisasi teknologi fundamental pengembangan web, yaitu HTML5, CSS3, dan JavaScript murni (Vanilla JavaScript), tanpa menggunakan kerangka kerja (framework) eksternal.",
+    year: "2025",
+    category: "Web Development",
+    role: "Fullstack Developer",
+    link: "https://rivansophanafazrii.github.io/submission-dicoding/",
+    mainImage: "img/web/personal-web.webp",
+    task: "Sesuai dengan kriteria utama Dicoding, website wajib disusun menggunakan struktur HTML yang valid, rapi, dan memanfaatkan elemen semantik (bukan hanya tumpukan tag div). Struktur ini harus mencakup elemen wajib seperti identitas diri, hobi, keahlian, riwayat, atau portofolio.",
+    solution:
+      "Menyusun kerangka halaman menggunakan tag semantik seperti header untuk navigasi utama dan judul, main sebagai pembungkus konten utama, dan footer sebagai catatan kaki di akhir halaman. <br>Membuat modul profil yang informatif dengan memanfaatkan elemen article untuk bagian biografi dan keahlian, serta elemen aside untuk menampilkan informasi tambahan pendukung seperti foto profil, media sosial, atau kutipan favorit (quote).",
+    videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4", // Ganti ID YouTube
+    gallery: [
+      "img/web/personal-web1.webp"
+    ], // Kosongkan array [] jika tidak ada foto
+  },
+  "project-3": {
     title: "Undangan Digital",
     subtitle:
       "Proyek ini merupakan pengembangan platform Website Undangan Digital (Digital Invitation) berbasis web statis yang dirancang sebagai alternatif modern, ekonomis, dan ramah lingkungan untuk menggantikan atau melengkapi undangan fisik konvensional. Menggunakan kombinasi teknologi fundamental web yaitu HTML5, CSS3, dan JavaScript, proyek ini berfokus pada penciptaan media informasi satu halaman (Landing Page) yang tidak hanya estetis secara visual, tetapi juga interaktif dan kaya akan fitur.",
     year: "2023",
     category: "Web Development",
     role: "Fullstack Developer",
+    link: "https://rivansophanafazrii.github.io/undangan-digital/",
     mainImage: "img/web/undangan-digital.webp",
     task: "Website harus menyajikan informasi acara secara terstruktur, mulai dari sampul pembuka, profil mempelai/penyelenggara, detail waktu dan lokasi, galeri foto, hingga kolom ucapan. Navigasi harus mulus agar tamu tidak bingung saat menggeser (scroll) halaman dari atas ke bawah.",
     solution:
@@ -733,9 +752,9 @@ window.openProjectModal = function (projectId) {
   let galleryHTML = "";
   if (data.gallery && data.gallery.length > 0) {
     galleryHTML = `<div class="project-section" style="grid-column: 1 / -1;">
-                     <h4>Dokumentasi</h4>
+                     <h4>Gallery</h4>
                      <div class="project-gallery">
-                       ${data.gallery.map((img) => `<img src="${img}" alt="Dokumentasi Proyek" onclick="zoomImage(this.src)">`).join("")}
+                       ${data.gallery.map((img) => `<img src="${img}" alt="Gallery Proyek" onclick="zoomImage(this.src)">`).join("")}
                      </div>
                    </div>`;
   }
@@ -749,6 +768,7 @@ window.openProjectModal = function (projectId) {
       <span><i class="fa-regular fa-calendar"></i> ${data.year}</span>
       <span><i class="fa-solid fa-layer-group"></i> ${data.category}</span>
       <span><i class="fa-solid fa-user-astronaut"></i> ${data.role}</span>
+      <span><i class="fa-solid fa-link"></i> ${data.link}</span>
     </div>
 
     <img src="${data.mainImage}" alt="${data.title}" class="project-main-img" onclick="zoomImage(this.src)">
