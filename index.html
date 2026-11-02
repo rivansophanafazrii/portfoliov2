@@ -323,7 +323,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <!-- <a href="#home" class="brand">RSF<span class="brand-dot">.</span></a> -->
-      <a href="#home" class="brand"><img src="img/rsf.png" alt="Logo RSF"></span></a>
+      <a href="#home" class="brand"><img src="img/rsf.png" alt="Logo RSF"></a>
       <p>© 2026 Rivan Sophana Fazri. Built with curiosity & code.</p>
       <a href="#home" class="back-top" aria-label="Kembali ke atas"><i class="fa-solid fa-arrow-up"></i></a>
     </div>
@@ -331,5 +331,11 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="script.js"></script>
+
+  <!-- LIGHTBOX IMAGE ZOOM MODAL -->
+<div id="imageZoomModal" class="cert-modal image-zoom-modal" role="dialog" aria-modal="true" aria-label="Pratinjau gambar proyek" aria-hidden="true">
+  <button class="close-zoom" type="button" onclick="closeImageZoom()" aria-label="Tutup pratinjau">&times;</button>
+  <img id="zoomedImage" alt="Gambar proyek yang diperbesar">
+</div>
 </body>
 </html>

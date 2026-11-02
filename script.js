@@ -132,9 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (typingElement) {
     const words = [
-      "Web Developer",
-      "UI/UX Designer",
       "Frontend Developer",
+      "Backend Developer",
+      "UI/UX Design",
       // "Creative Developer",
     ];
 
@@ -691,7 +691,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const projectsData = {
   "project-1": {
     title: "Sistem Informasi Perpustakaan Berbasis Website",
-    subtitle: "Platform manajemen perpustakaan sekolah dengan tampilan yang modern menggunakan framework bootstrap 5",
+    subtitle:
+      "SIPERPUS adalah aplikasi manajemen perpustakaan berbasis web untuk mendukung administrasi buku, anggota, peminjaman, pengembalian, berita, layanan perpustakaan, serta pelaporan. Sistem menyediakan dua area utama: area administrator untuk pengelolaan operasional dan area anggota untuk katalog, peminjaman, riwayat, serta profil pengguna.",
     year: "2026",
     category: "Web Development",
     role: "Fullstack Developer",
@@ -700,20 +701,23 @@ const projectsData = {
     solution:
       "Memanfaatkan library penanggalan Carbon (bawaan Laravel) untuk menghitung selisih hari antara tanggal jatuh tempo dengan tanggal pengembalian riil. Jika terlambat, sistem otomatis mengalikan jumlah hari tersebut dengan tarif denda per hari yang berlaku di sekolah.",
     videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4", // Ganti ID YouTube
-    gallery: ["img/doc-1.jpg", "img/doc-2.jpg", "img/doc-3.jpg"], // Kosongkan array [] jika tidak ada foto
+    gallery: ["img/web/siperpus.webp"],
   },
   "project-2": {
-    title: "Landing Page Undangan Digital",
-    subtitle: "Ini adalah proyek tugas mata kuliah desain web",
-    year: "2026",
+    title: "Undangan Digital",
+    subtitle:
+      "Proyek ini merupakan pengembangan platform Website Undangan Digital (Digital Invitation) berbasis web statis yang dirancang sebagai alternatif modern, ekonomis, dan ramah lingkungan untuk menggantikan atau melengkapi undangan fisik konvensional. Menggunakan kombinasi teknologi fundamental web yaitu HTML5, CSS3, dan JavaScript, proyek ini berfokus pada penciptaan media informasi satu halaman (Landing Page) yang tidak hanya estetis secara visual, tetapi juga interaktif dan kaya akan fitur.",
+    year: "2023",
     category: "Web Development",
     role: "Fullstack Developer",
     mainImage: "img/web/undangan-digital.webp",
-    task: "Mengembangkan inti dari sistem perpustakaan, yaitu sirkulasi peminjaman dan pengembalian. Sistem wajib memperbarui stok buku secara otomatis saat transaksi terjadi dan menghitung denda keterlambatan secara objektif tanpa kalkulasi manual dari petugas.",
+    task: "Website harus menyajikan informasi acara secara terstruktur, mulai dari sampul pembuka, profil mempelai/penyelenggara, detail waktu dan lokasi, galeri foto, hingga kolom ucapan. Navigasi harus mulus agar tamu tidak bingung saat menggeser (scroll) halaman dari atas ke bawah.",
     solution:
-      "Memanfaatkan library penanggalan Carbon (bawaan Laravel) untuk menghitung selisih hari antara tanggal jatuh tempo dengan tanggal pengembalian riil. Jika terlambat, sistem otomatis mengalikan jumlah hari tersebut dengan tarif denda per hari yang berlaku di sekolah.",
+      "HTML5 Semantic: Menyusun struktur halaman menggunakan tag HTML5 yang rapi seperti header untuk sampul, section untuk tiap informasi (Mempelai, Acara, Galeri, Ucapan), dan footer untuk penutup. <br> CSS Smooth Scroll: Menggunakan properti CSS html { scroll-behavior: smooth; } agar perpindahan antar bagian halaman terasa halus saat tamu menggunakan menu navigasi.",
     videoUrl: "https://www.youtube.com/embed/ScMzIvxBSi4", // Ganti ID YouTube
-    gallery: ["img/doc-1.jpg", "img/doc-2.jpg", "img/doc-3.jpg"], // Kosongkan array [] jika tidak ada foto
+    gallery: [
+      "img/web/undangan-digital1.webp","img/web/undangan-digital2.webp","img/web/undangan-digital3.webp","img/web/undangan-digital4.webp","img/web/undangan-digital5.webp","img/web/undangan-digital6.webp",
+    ], // Kosongkan array [] jika tidak ada foto
   },
   // Tambahkan 'project-2', 'project-3', dst...
 };
@@ -725,18 +729,18 @@ window.openProjectModal = function (projectId) {
 
   if (!modal || !modalBody || !data) return;
 
-  // Generate Gallery HTML
+  // Generate Gallery HTML dengan event onclick untuk Zoom
   let galleryHTML = "";
   if (data.gallery && data.gallery.length > 0) {
     galleryHTML = `<div class="project-section" style="grid-column: 1 / -1;">
                      <h4>Dokumentasi</h4>
                      <div class="project-gallery">
-                       ${data.gallery.map((img) => `<img src="${img}" alt="Dokumentasi Proyek">`).join("")}
+                       ${data.gallery.map((img) => `<img src="${img}" alt="Dokumentasi Proyek" onclick="zoomImage(this.src)">`).join("")}
                      </div>
                    </div>`;
   }
 
-  // Inject HTML ke dalam modal
+  // Inject HTML ke dalam modal (Gambar Utama juga diberi event onclick untuk Zoom)
   modalBody.innerHTML = `
     <span class="mini-title">${data.subtitle}</span>
     <h2 id="modalTitle">${data.title}</h2>
@@ -747,7 +751,7 @@ window.openProjectModal = function (projectId) {
       <span><i class="fa-solid fa-user-astronaut"></i> ${data.role}</span>
     </div>
 
-    <img src="${data.mainImage}" alt="${data.title}" class="project-main-img">
+    <img src="${data.mainImage}" alt="${data.title}" class="project-main-img" onclick="zoomImage(this.src)">
 
     <div class="project-desc-grid">
       <div class="project-section">
@@ -776,6 +780,7 @@ window.openProjectModal = function (projectId) {
   `;
 
   modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
 
   requestAnimationFrame(() => {
@@ -788,6 +793,7 @@ window.closeProjectModal = function () {
   if (!modal) return;
 
   modal.classList.remove("modal-visible");
+  modal.setAttribute("aria-hidden", "true");
   setTimeout(() => {
     modal.classList.remove("show");
     document.body.classList.remove("modal-open");
@@ -801,6 +807,64 @@ window.closeProjectModal = function () {
 window.addEventListener("click", (event) => {
   const projectModal = document.getElementById("projectModal");
   if (projectModal && event.target === projectModal) {
+    window.closeProjectModal();
+  }
+});
+
+/* =========================================================
+   ZOOM IMAGE LOGIC
+   ========================================================= */
+
+window.zoomImage = function (src) {
+  const zoomModal = document.getElementById("imageZoomModal");
+  const zoomedImg = document.getElementById("zoomedImage");
+
+  if (!zoomModal || !zoomedImg) return;
+
+  zoomedImg.src = src;
+  zoomedImg.alt = "Gambar proyek yang diperbesar";
+  zoomModal.setAttribute("aria-hidden", "false");
+  zoomModal.classList.add("show");
+
+  requestAnimationFrame(() => {
+    zoomModal.classList.add("modal-visible");
+  });
+};
+
+window.closeImageZoom = function () {
+  const zoomModal = document.getElementById("imageZoomModal");
+  if (!zoomModal) return;
+
+  zoomModal.classList.remove("modal-visible");
+  zoomModal.setAttribute("aria-hidden", "true");
+  setTimeout(() => {
+    zoomModal.classList.remove("show");
+    const zoomedImg = document.getElementById("zoomedImage");
+    if (zoomedImg) zoomedImg.removeAttribute("src");
+  }, 200);
+};
+
+const imageZoomModal = document.getElementById("imageZoomModal");
+if (imageZoomModal) {
+  imageZoomModal.addEventListener("click", (event) => {
+    if (event.target === imageZoomModal) {
+      window.closeImageZoom();
+    }
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+
+  const zoomModal = document.getElementById("imageZoomModal");
+  const projectModal = document.getElementById("projectModal");
+
+  if (zoomModal && zoomModal.classList.contains("show")) {
+    window.closeImageZoom();
+    return;
+  }
+
+  if (projectModal && projectModal.classList.contains("show")) {
     window.closeProjectModal();
   }
 });
